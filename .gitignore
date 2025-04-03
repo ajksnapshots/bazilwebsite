@@ -1,0 +1,37 @@
+# Node.js dependencies
+node_modules/
+npm-debug.log
+yarn-error.log
+package-lock.json
+
+# Build files
+dist/
+build/
+.cache/
+out/
+
+# Editor & OS-specific files
+.DS_Store
+Thumbs.db
+.idea/
+.vscode/
+*.log
+
+# Git-related
+*.swp
+*.swo
+
+# Environment variables & sensitive files
+.env
+.env.local
+.env.development
+.env.production
+.env.test
+
+# GitHub Pages build output
+public/
+
+# Temporary files
+*.tmp
+*.bak
+*.backup
