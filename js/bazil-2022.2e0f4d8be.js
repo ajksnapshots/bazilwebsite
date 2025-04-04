@@ -1,165 +1,3 @@
-/*!
- * Webflow: Front-end site library
- * @license MIT
- * Inline scripts may access the api using an async handler:
- *   var Webflow = Webflow || [];
- *   Webflow.push(readyFunction);
- */
-
-(()=>{
-    var om = Object.create;
-    var qn = Object.defineProperty;
-    var am = Object.getOwnPropertyDescriptor;
-    var sm = Object.getOwnPropertyNames;
-    var um = Object.getPrototypeOf
-      , cm = Object.prototype.hasOwnProperty;
-    var ye = (e,t)=>()=>(e && (t = e(e = 0)),
-    t);
-    var g = (e,t)=>()=>(t || e((t = {
-        exports: {}
-    }).exports, t),
-    t.exports)
-      , Fe = (e,t)=>{
-        for (var n in t)
-            qn(e, n, {
-                get: t[n],
-                enumerable: !0
-            })
-    }
-      , Ea = (e,t,n,r)=>{
-        if (t && typeof t == "object" || typeof t == "function")
-            for (let i of sm(t))
-                !cm.call(e, i) && i !== n && qn(e, i, {
-                    get: ()=>t[i],
-                    enumerable: !(r = am(t, i)) || r.enumerable
-                });
-        return e
-    }
-    ;
-    var ge = (e,t,n)=>(n = e != null ? om(um(e)) : {},
-    Ea(t || !e || !e.__esModule ? qn(n, "default", {
-        value: e,
-        enumerable: !0
-    }) : n, e))
-      , $e = e=>Ea(qn({}, "__esModule", {
-        value: !0
-    }), e);
-    var _a = g(()=>{
-        "use strict";
-        (function() {
-            if (typeof window > "u")
-                return;
-            let e = window.navigator.userAgent.match(/Edge\/(\d{2})\./)
-              , t = e ? parseInt(e[1], 10) >= 16 : !1;
-            if ("objectFit"in document.documentElement.style && !t) {
-                window.objectFitPolyfill = function() {
-                    return !1
-                }
-                ;
-                return
-            }
-            let r = function(a) {
-                let u = window.getComputedStyle(a, null)
-                  , l = u.getPropertyValue("position")
-                  , _ = u.getPropertyValue("overflow")
-                  , d = u.getPropertyValue("display");
-                (!l || l === "static") && (a.style.position = "relative"),
-                _ !== "hidden" && (a.style.overflow = "hidden"),
-                (!d || d === "inline") && (a.style.display = "block"),
-                a.clientHeight === 0 && (a.style.height = "100%"),
-                a.className.indexOf("object-fit-polyfill") === -1 && (a.className += " object-fit-polyfill")
-            }
-              , i = function(a) {
-                let u = window.getComputedStyle(a, null)
-                  , l = {
-                    "max-width": "none",
-                    "max-height": "none",
-                    "min-width": "0px",
-                    "min-height": "0px",
-                    top: "auto",
-                    right: "auto",
-                    bottom: "auto",
-                    left: "auto",
-                    "margin-top": "0px",
-                    "margin-right": "0px",
-                    "margin-bottom": "0px",
-                    "margin-left": "0px"
-                };
-                for (let _ in l)
-                    u.getPropertyValue(_) !== l[_] && (a.style[_] = l[_])
-            }
-              , o = function(a) {
-                let u = a.parentNode;
-                r(u),
-                i(a),
-                a.style.position = "absolute",
-                a.style.height = "100%",
-                a.style.width = "auto",
-                a.clientWidth > u.clientWidth ? (a.style.top = "0",
-                a.style.marginTop = "0",
-                a.style.left = "50%",
-                a.style.marginLeft = a.clientWidth / -2 + "px") : (a.style.width = "100%",
-                a.style.height = "auto",
-                a.style.left = "0",
-                a.style.marginLeft = "0",
-                a.style.top = "50%",
-                a.style.marginTop = a.clientHeight / -2 + "px")
-            }
-              , s = function(a) {
-                if (typeof a > "u" || a instanceof Event)
-                    a = document.querySelectorAll("[data-object-fit]");
-                else if (a && a.nodeName)
-                    a = [a];
-                else if (typeof a == "object" && a.length && a[0].nodeName)
-                    a = a;
-                else
-                    return !1;
-                for (let u = 0; u < a.length; u++) {
-                    if (!a[u].nodeName)
-                        continue;
-                    let l = a[u].nodeName.toLowerCase();
-                    if (l === "img") {
-                        if (t)
-                            continue;
-                        a[u].complete ? o(a[u]) : a[u].addEventListener("load", function() {
-                            o(this)
-                        })
-                    } else
-                        l === "video" ? a[u].readyState > 0 ? o(a[u]) : a[u].addEventListener("loadedmetadata", function() {
-                            o(this)
-                        }) : o(a[u])
-                }
-                return !0
-            };
-            document.readyState === "loading" ? document.addEventListener("DOMContentLoaded", s) : s(),
-            window.addEventListener("resize", s),
-            window.objectFitPolyfill = s
-        }
-        )()
-    }
-    );
-    var Ia = g(()=>{
-        "use strict";
-        (function() {
-            if (typeof window > "u")
-                return;
-            function e(r) {
-                Webflow.env("design") || ($("video").each(function() {
-                    r && $(this).prop("autoplay") ? this.play() : this.pause()
-                }),
-                $(".w-background-video--control").each(function() {
-                    r ? n($(this)) : t($(this))
-                }))
-            }
-            function t(r) {
-                r.find("> span").each(function(i) {
-                    $(this).prop("hidden", ()=>i === 0)
-                })
-            }
-            function n(r) {
-                r.find("> span").each(function(i) {
-                    $(this).prop("hidden", ()=>i === 1)
-                })
             }
             $(document).ready(()=>{
                 let r = window.matchMedia("(prefers-reduced-motion: reduce)");
@@ -417,7 +255,7 @@
                 "ease-out-back": "cubic-bezier(0.175, 0.885, 0.320, 1)",
                 "ease-in-out-back": "cubic-bezier(0.680, 0, 0.265, 1)"
             }
-          , E = document
+              , E = document
               , b = window
               , x = "bkwld-tram"
               , T = /[\-\.0-9]/g
@@ -925,7 +763,7 @@
                         context: this
                     })
                 }
-               ,
+                ,
                 f.update = function() {
                     h(this.el, this.name, this.style(this.current))
                 }
@@ -1459,7 +1297,7 @@ __p+='`),
             ,
             e
         }()
-        }
+    }
     );
     var Le = g((r1,La)=>{
         "use strict";
@@ -2605,7 +2443,7 @@ __p+='`),
         }
     }
     );
-     var Fy, qy, ky, Gy, Vy, Xy, Uy, wi, ws = ye(()=>{
+    var Fy, qy, ky, Gy, Vy, Xy, Uy, wi, ws = ye(()=>{
         "use strict";
         Hn();
         ({TRANSFORM_MOVE: Fy, TRANSFORM_SCALE: qy, TRANSFORM_ROTATE: ky, TRANSFORM_SKEW: Gy, STYLE_SIZE: Vy, STYLE_FILTER: Xy, STYLE_FONT_VARIATION: Uy} = Pe),
@@ -3207,7 +3045,7 @@ __p+='`),
         iu.exports = k_
     }
     );
-        var su = g((J1,au)=>{
+    var su = g((J1,au)=>{
         var G_ = un();
         function V_(e) {
             var t = this.__data__
@@ -3849,7 +3687,7 @@ __p+='`),
         Vc.exports = ET
     }
     );
-   var Di = g((K2,Uc)=>{
+    var Di = g((K2,Uc)=>{
         var _T = Gc()
           , IT = Ni()
           , bT = Object.prototype
@@ -4538,7 +4376,7 @@ __p+='`),
         Sf.exports = Fx
     }
     );
-     var Lf = g((kq,Cf)=>{
+    var Lf = g((kq,Cf)=>{
         var qx = Of()
           , kx = Rf();
         function Gx(e, t) {
@@ -5059,7 +4897,7 @@ __p+='`),
         no();
         fd = ge(to())
     }
-   );
+    );
     var hd = {};
     Fe(hd, {
         createElementState: ()=>gd,
@@ -9598,7 +9436,7 @@ __p+='`),
         )
     }
     );
-   var Xv = g((JG,Vv)=>{
+    var Xv = g((JG,Vv)=>{
         "use strict";
         var qF = Le();
         qF.define("touch", Vv.exports = function(e) {
@@ -11269,7 +11107,7 @@ __p+='`),
                     v = !0;
                     return
                 }
-      c.el.off(u),
+                c.el.off(u),
                 c.left.off(u),
                 c.right.off(u),
                 c.nav.off(u),
@@ -15075,7 +14913,7 @@ Webflow.require('ix2').init({
                 "appliesTo": "ELEMENT",
                 "styleBlockIds": []
             },
-          "targets": [{
+            "targets": [{
                 "id": "29ee1b45-56ce-d078-234d-c9b91de1f0eb",
                 "appliesTo": "ELEMENT",
                 "styleBlockIds": []
@@ -15149,6 +14987,7 @@ Webflow.require('ix2').init({
                     "autoStopEventId": "e-326"
                 }
             },
+
             "mediaQueries": ["main", "medium", "small", "tiny"],
             "target": {
                 "id": "29ee1b45-56ce-d078-234d-c9b91de1f0b3",
@@ -18107,7 +17946,7 @@ Webflow.require('ix2').init({
             },
             "createdOn": 1653314612820
         },
-         "e-473": {
+        "e-473": {
             "id": "e-473",
             "name": "",
             "animationType": "custom",
@@ -22113,7 +21952,7 @@ Webflow.require('ix2').init({
                         "target": {
                             "id": "656ef8b027ad4189724cf4f1|f6d1e900-4e6d-3aff-5bf3-54af645759f3"
                         },
-                       "xValue": null,
+                        "xValue": null,
                         "yValue": -100,
                         "xUnit": "px",
                         "yUnit": "%",
@@ -27114,7 +26953,7 @@ Webflow.require('ix2').init({
                         "zUnit": "PX"
                     }
                 }, {
-                 "id": "a-131-n-2",
+                    "id": "a-131-n-2",
                     "actionTypeId": "STYLE_OPACITY",
                     "config": {
                         "delay": 0,
